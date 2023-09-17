@@ -1,0 +1,15 @@
+version: '3'
+
+tasks:
+  unit:
+    cmds:
+      - go test -short  ./...
+    desc: 
+      run go unit test
+  
+  unit:coverage:
+    cmds:
+      - go test ./... -coverprofile coverage.out -count=1 -v
+      - go tool cover -html=coverage.out
+    desc:
+      run unit test and show the coverage report

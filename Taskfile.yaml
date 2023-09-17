@@ -1,0 +1,14 @@
+version: '3'
+
+vars:
+  GREETING: Hello, Welcome to product-service
+
+includes:
+  run: ./taskfile/run
+  test: ./taskfile/test
+
+tasks:
+  default:  
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
