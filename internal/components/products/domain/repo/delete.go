@@ -28,7 +28,7 @@ func (repo *deleteProduct) DeleteProduct(ctx context.Context, id uint64) (err er
 
 	query := `UPDATE products SET deleted_at = NOW() WHERE id = $1`
 
-	_, err = repo.db.QueryxContext(ctx, query, productModel.ID)
+	_, err = repo.db.ExecContext(ctx, query, productModel.ID)
 	if err != nil {
 		return err
 	}

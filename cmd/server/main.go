@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
 	categoryUsecase "github.com/ikhwankhaliddd/product-service/internal/components/category"
 	categoryPublicRepo "github.com/ikhwankhaliddd/product-service/internal/components/category/public_repo"
@@ -12,6 +13,7 @@ import (
 	varietyRepo "github.com/ikhwankhaliddd/product-service/internal/components/variety/domain/repo"
 	varietyPublicRepo "github.com/ikhwankhaliddd/product-service/internal/components/variety/public_repo"
 	"github.com/ikhwankhaliddd/product-service/internal/helper/uploader"
+	"github.com/joho/godotenv"
 
 	productsHandler "github.com/ikhwankhaliddd/product-service/internal/http/handler/products"
 	varietyHandler "github.com/ikhwankhaliddd/product-service/internal/http/handler/variety"
@@ -35,11 +37,17 @@ func init() {
 }
 
 func main() {
-	dbHost := viper.GetString("database.host")
-	dbPort := viper.GetString("database.port")
-	dbUser := viper.GetString("database.user")
-	dbPass := viper.GetString("database.password")
-	dbName := viper.GetString("database.name")
+
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Cant load .env file")
+	}
+
+	dbHost := os.Getenv("DB_HOST")
+	dbPort := os.Getenv("DB_PORT")
+	dbUser := os.Getenv("DB_USER")
+	dbPass := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
 
 	connection := fmt.Sprintf(
 		"host=%s port=%s user=%s "+"password=%s dbname=%s sslmode=disable",

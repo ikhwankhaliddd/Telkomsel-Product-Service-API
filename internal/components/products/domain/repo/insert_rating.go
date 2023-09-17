@@ -31,7 +31,7 @@ func (repo *insertRating) InsertRating(ctx context.Context, in valuetype.PostRat
 	}
 
 	query := `UPDATE products SET rating = $1 WHERE id = $2`
-	_, err = repo.db.QueryxContext(ctx, query, productModel.Rating, productModel.ID)
+	_, err = repo.db.ExecContext(ctx, query, productModel.Rating, productModel.ID)
 	if err != nil {
 		return err
 	}
