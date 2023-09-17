@@ -5,11 +5,7 @@ FROM golang:1.19 AS build
 WORKDIR /app
 
 # Salin file Go source code Anda ke dalam container
-COPY ./cmd/server ./ 
-
-# Copy go.mod dan go.sum dari direktori proyek Anda
-COPY go.mod .
-COPY go.sum .
+COPY . .
 
 # Build aplikasi Go
 RUN go build -o telkomsel-usecase-service-api
