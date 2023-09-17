@@ -11,7 +11,7 @@ Project ini adalah implementasi dari sebuah backend API service yang menyediakan
 
 **Database:** PostgreSQL
 
-**Other:** Docker, AWS S3
+**Other:** Docker, AWS S3, Github Actions
 
 
 ## Installation
