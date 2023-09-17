@@ -46,28 +46,28 @@ jobs:
     - name: Push Docker image to Docker Hub
       run: docker push ikhwankhalid/telkomsel-usecase-service-api:latest
 
-  install-railway:
-    needs: containerize
-    runs-on: ubuntu-latest
-    steps:
-    - name: Install Railway CLI
-      run: curl -sSL https://railway.app/cli
+  # install-railway:
+  #   needs: containerize
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Install Railway CLI
+  #     run: curl -sSL https://railway.app/cli
     
-    - name: Check Railway CLI
-      run: which railway
+  #   - name: Check Railway CLI
+  #     run: which railway
 
-    - name: Add Railway CLI to PATH
-      run: echo "export PATH=$PATH:$HOME/.railway/bin" >> $GITHUB_ENV
+  #   - name: Add Railway CLI to PATH
+  #     run: echo "export PATH=$PATH:$HOME/.railway/bin" >> $GITHUB_ENV
 
-  deploy:
-    needs: [containerize, install-railway]
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+  # deploy:
+  #   needs: [containerize, install-railway]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v3
 
-    - name: Log in to Railway
-      run: echo ${{ secrets.RAILWAY_TOKEN }} | railway login
+  #   - name: Log in to Railway
+  #     run: echo ${{ secrets.RAILWAY_TOKEN }} | railway login
 
-    - name: Deploy to Railway
-      run: railway up
+  #   - name: Deploy to Railway
+  #     run: railway up
