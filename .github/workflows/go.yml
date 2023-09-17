@@ -45,9 +45,15 @@ jobs:
 
     - name: Push Docker image to Docker Hub
       run: docker push ikhwankhalid/telkomsel-usecase-service-api:latest
+  install-railway:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Railway CLI
+      run: |
+        curl -sSL https://railway.app/cli | sh
 
   deploy:
-    needs: containerize
+    needs: [containerize, install-railway]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
