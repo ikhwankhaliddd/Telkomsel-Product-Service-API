@@ -30,7 +30,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// Jalankan migrasi
 	if err := runMigrations(db); err != nil {
 		log.Fatalf("Migration failed: %v", err)
 	}
@@ -38,9 +37,7 @@ func main() {
 	fmt.Println("Migration completed successfully.")
 }
 
-// runMigrations menjalankan semua migrasi basis data
 func runMigrations(db *sqlx.DB) error {
-	// Menggantilah dengan skrip migrasi SQL Anda
 	migrationSQL := `
 	CREATE TABLE categories (
 		id serial PRIMARY KEY,
