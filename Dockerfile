@@ -7,7 +7,11 @@ WORKDIR /app
 # Salin file Go source code Anda ke dalam container
 COPY ./cmd/server . 
 
-# Build aplikasi Go
+# Copy go.mod dan go.sum dari direktori proyek Anda
+COPY go.mod .
+COPY go.sum .
+
+# Build aplikasi Go (tanpa penyalinan go.mod)
 RUN go build -o telkomsel-usecase-service-api
 
 # Tahap Runtime

@@ -6,6 +6,7 @@ require (
 	github.com/aws/aws-sdk-go v1.45.11
 	github.com/elgris/sqrl v0.0.0-20210727210741-7e0198b30236
 	github.com/jmoiron/sqlx v1.3.5
+	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo/v4 v4.11.1
 	github.com/lib/pq v1.10.9
 	github.com/spf13/viper v1.16.0
@@ -18,7 +19,6 @@ require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
-	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/labstack/gommon v0.4.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
