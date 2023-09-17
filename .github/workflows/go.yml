@@ -52,6 +52,9 @@ jobs:
     steps:
     - name: Install Railway CLI
       run: curl -sSL https://railway.app/cli
+      
+    - name: Add Railway CLI to PATH
+      run: echo "export PATH=$PATH:$HOME/.railway/bin" >> $GITHUB_ENV
 
   deploy:
     needs: [containerize, install-railway]
