@@ -42,7 +42,7 @@ func TestInsertVariety(t *testing.T) {
 					name,
 					price,
 					stock,
-					created_at,
+					created_at
 				) VALUES(
 					$1,
 					$2,
@@ -78,7 +78,7 @@ func TestInsertVariety(t *testing.T) {
 					name,
 					price,
 					stock,
-					created_at,
+					created_at
 				) VALUES(
 					$1,
 					$2,

@@ -37,7 +37,7 @@ func TestGetCategory(t *testing.T) {
 		{
 			name: "it_success_get_category",
 			args: args{
-				expQuery: `SELECT id FROM category WHERE name = $1`,
+				expQuery: `SELECT id FROM categories WHERE name = $1`,
 				data: valuetype.GetCategoryIn{
 					Name: "Makanan",
 				},
@@ -56,7 +56,7 @@ func TestGetCategory(t *testing.T) {
 		{
 			name: "it_return_error_when_get_category",
 			args: args{
-				expQuery: `SELECT id FROM category WHERE name = $1`,
+				expQuery: `SELECT id FROM categories WHERE name = $1`,
 				data: valuetype.GetCategoryIn{
 					Name: "",
 				},

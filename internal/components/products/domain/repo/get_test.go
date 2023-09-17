@@ -38,7 +38,7 @@ func TestGetProduct(t *testing.T) {
 			name: "it_success_get_product",
 			args: args{
 				expQuery: `
-				SELECT id, name, rating, description, created_at, updated_at
+				SELECT id, name, rating, description, created_at, updated_at, category_id
 				FROM products
 				WHERE id = $1 AND deleted_at IS NULL
 				`,
@@ -52,12 +52,13 @@ func TestGetProduct(t *testing.T) {
 					Rating:      5,
 					CreatedAt:   time.Time{},
 					UpdatedAt:   time.Time{},
+					CategoryID:  1,
 				},
 			},
 			doMock: func(args args, mockData mockData) {
 				rows := mock.NewRows([]string{
-					"id", "name", "rating", "description", "created_at", "updated_at",
-				}).AddRow(1, "test product 1", 5, "ini description", time.Time{}, time.Time{})
+					"id", "name", "rating", "description", "created_at", "updated_at", "category_id",
+				}).AddRow(1, "test product 1", 5, "ini description", time.Time{}, time.Time{}, 1)
 
 				mock.ExpectQuery(regexp.QuoteMeta(args.expQuery)).WithArgs(args.id).WillReturnRows(rows)
 			},
@@ -66,7 +67,7 @@ func TestGetProduct(t *testing.T) {
 			name: "it_return_error_when_get_category",
 			args: args{
 				expQuery: `
-				SELECT id, name, rating, description, created_at, updated_at
+				SELECT id, name, rating, description, created_at, updated_at, category_id
 				FROM products
 				WHERE id = $1 AND deleted_at IS NULL
 				`,
