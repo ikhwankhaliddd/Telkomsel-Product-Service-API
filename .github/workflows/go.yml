@@ -41,7 +41,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t telkomsel-usecase-service-api .
+      run: docker build -t ikhwankhalid/telkomsel-usecase-service-api .
 
     - name: Push Docker image to Docker Hub
       run: docker push ikhwankhalid/telkomsel-usecase-service-api:latest
