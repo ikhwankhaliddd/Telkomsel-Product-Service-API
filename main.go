@@ -6,6 +6,7 @@ import (
 	"os"
 
 	categoryUsecase "github.com/ikhwankhaliddd/product-service/internal/components/category"
+	categoryRepo "github.com/ikhwankhaliddd/product-service/internal/components/category/domain/repo"
 	categoryPublicRepo "github.com/ikhwankhaliddd/product-service/internal/components/category/public_repo"
 	"github.com/ikhwankhaliddd/product-service/internal/components/products"
 	"github.com/ikhwankhaliddd/product-service/internal/components/products/domain/repo"
@@ -15,8 +16,10 @@ import (
 	"github.com/ikhwankhaliddd/product-service/internal/helper/uploader"
 	"github.com/joho/godotenv"
 
+	categoryHandler "github.com/ikhwankhaliddd/product-service/internal/http/handler/category"
 	productsHandler "github.com/ikhwankhaliddd/product-service/internal/http/handler/products"
 	varietyHandler "github.com/ikhwankhaliddd/product-service/internal/http/handler/variety"
+
 	"github.com/jmoiron/sqlx"
 	"github.com/labstack/echo/v4"
 	_ "github.com/lib/pq"
@@ -121,6 +124,17 @@ func main() {
 		updateVarietyUsecase,
 		deleteVarietyUsecase,
 	)
+
+	categoryCreatorRepo := categoryRepo.NewInsertCategory(db)
+	categoryCreatorUsecase := categoryUsecase.NewCreateCategory(categoryCreatorRepo)
+
+	categoryListGetterRepo := categoryRepo.NewCategoryListGetter(db)
+	categoryListGetterUsecase := categoryUsecase.NewCategoryListGetter(categoryListGetterRepo)
+
+	categoryController := categoryHandler.NewCategoryController(
+		categoryCreatorUsecase,
+		categoryListGetterUsecase,
+	)
 	v1 := e.Group("/v1")
 	{
 		products := v1.Group("/products")
@@ -137,6 +151,11 @@ func main() {
 			variety.POST("/upload/:id", varietyController.HandleImageUpload)
 			variety.PATCH("/:id", varietyController.HandleUpdatter)
 			variety.DELETE("/:id", varietyController.HandleDelete)
+		}
+		category := v1.Group("/category")
+		{
+			category.POST("", categoryController.HandleCategoryCreator)
+			category.GET("", categoryController.HandleCategoryListGetter)
 		}
 	}
 

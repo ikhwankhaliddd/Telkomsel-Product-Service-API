@@ -3,8 +3,8 @@ package publicrepo
 import (
 	"context"
 
+	"github.com/ikhwankhaliddd/product-service/internal/components/category/domain/model"
 	"github.com/ikhwankhaliddd/product-service/internal/components/category/entity"
-	"github.com/ikhwankhaliddd/product-service/internal/components/category/internal/model"
 	"github.com/ikhwankhaliddd/product-service/internal/components/category/valuetype"
 	"github.com/jmoiron/sqlx"
 )

@@ -1,25 +1,25 @@
-# This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
-
 name: Go
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
 
 jobs:
 
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
     - name: Set up Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v2
       with:
-        go-version: '1.19'
+        go-version: 1.19
 
     - name: Build
       run: go build -v ./...
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
@@ -45,29 +45,3 @@ jobs:
 
     - name: Push Docker image to Docker Hub
       run: docker push ikhwankhalid/telkomsel-usecase-service-api:latest
-
-  # install-railway:
-  #   needs: containerize
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Install Railway CLI
-  #     run: curl -sSL https://railway.app/cli
-    
-  #   - name: Check Railway CLI
-  #     run: which railway
-
-  #   - name: Add Railway CLI to PATH
-  #     run: echo "export PATH=$PATH:$HOME/.railway/bin" >> $GITHUB_ENV
-
-  # deploy:
-  #   needs: [containerize, install-railway]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v3
-
-  #   - name: Log in to Railway
-  #     run: echo ${{ secrets.RAILWAY_TOKEN }} | railway login
-
-  #   - name: Deploy to Railway
-  #     run: railway up
