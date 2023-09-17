@@ -11,7 +11,7 @@ Project ini adalah implementasi dari sebuah backend API service yang menyediakan
 
 **Database:** PostgreSQL
 
-**Other:** Docker, AWS S3
+**Other:** Docker, AWS S3, Github Actions
 
 
 ## Installation
@@ -51,6 +51,24 @@ DB_PORT=<YOUR_DB_PORT>
 DB_USER=<YOUR_DB_USER>
 DB_PASSWORD=<YOUR_DB_PASSWORD>
 DB_NAME=<YOUR_DB_NAME>
+```
+
+4. Create and configure a config.json file
+```bash
+{
+    "debug": true,
+    "server": {
+        "address": ":<YOUR_APP_PORT>"
+    },
+    "contex": {
+        "timeout": 2
+    },
+    "region": "<YOUR_AWS_REGION>",
+    "bucketName": "<YOUR_AWS_BUCKET_NAME>",
+    "accessKey": "<YOUR_AWS_ACCESS_KEY>",
+    "secretKey": "<YOUR_AWS_SECRET_KEY>",
+    "token": "<YOUR_AWS_TOKEN>"
+}
 ```
 
 4. Run the migrations
