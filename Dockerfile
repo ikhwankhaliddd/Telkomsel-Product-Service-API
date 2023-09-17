@@ -1,22 +1,22 @@
-# Gunakan gambar base golang
+# Tahap Build
 FROM golang:1.19 AS build
 
 # Set working directory
 WORKDIR /app
 
 # Salin file Go source code Anda ke dalam container
-COPY . .
+COPY ./cmd/server . 
 
 # Build aplikasi Go
 RUN go build -o telkomsel-usecase-service-api
 
-# Image container runtime yang lebih ringan
+# Tahap Runtime
 FROM alpine:latest
 
 # Set working directory di dalam container
 WORKDIR /app
 
-# Salin binary aplikasi Go dari build stage ke container
+# Salin binary aplikasi Go dari tahap build ke tahap runtime
 COPY --from=build /app/telkomsel-usecase-service-api .
 
 # Expose port yang akan digunakan oleh aplikasi Anda
